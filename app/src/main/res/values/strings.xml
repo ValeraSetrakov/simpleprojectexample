@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">simpleexample</string>
+    <string name="event_schedule">Расписание</string>
+    <string name="profile">Профиль</string>
+    <string name="fio">ФИО</string>
+    <string name="age">Возраст</string>
+    <string name="study">Место обучения</string>
+    <string name="address">Адрес</string>
+    <string name="title">Название</string>
+    <string name="description">Описание</string>
+</resources>

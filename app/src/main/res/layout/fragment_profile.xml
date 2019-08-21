@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="viewmodel" type="com.valerasetrakov.simpleexample.screen.main.profile.ProfileFragmentViewModel"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <ImageView
+                        android:id="@+id/image_view_avatar"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        app:layout_constraintDimensionRatio="1:1"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:imageUrl="@{viewmodel.profile.avatarReference}"
+                        app:placeholder="@{@drawable/ic_user}"
+                        tools:src="@tools:sample/avatars"
+                />
+
+                <include
+                        layout="@layout/view_text_title_value"
+                        android:id="@+id/text_view_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/image_view_avatar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:title="@{@string/fio}"
+                        app:value="@{viewmodel.profile.name}"
+                />
+
+                <include
+                        layout="@layout/view_text_title_value"
+                        android:id="@+id/text_view_age"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_name"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:title="@{@string/age}"
+                        app:value="@{viewmodel.profile.age}"
+                />
+
+                <include
+                        layout="@layout/view_text_title_value"
+                        android:id="@+id/text_view_study"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_age"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:title="@{@string/study}"
+                        app:value="@{viewmodel.profile.study}"
+                />
+
+                <androidx.constraintlayout.widget.Group
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/group"
+                        app:constraint_referenced_ids="text_view_name,text_view_age,image_view_avatar,text_view_study"
+                        android:visibility="@{viewmodel.isLoad ? View.GONE : View.VISIBLE}"
+                />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:id="@+id/progress_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewmodel.isLoad ? View.VISIBLE : View.GONE}"
+        />
+
+    </FrameLayout>
+</layout>
